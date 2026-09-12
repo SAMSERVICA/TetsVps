@@ -57,7 +57,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session1-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session1-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
@@ -172,7 +172,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session2-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session2-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
@@ -287,7 +287,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session3-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session3-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
@@ -402,7 +402,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session4-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session4-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
@@ -517,7 +517,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session5-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session5-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
@@ -632,7 +632,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="session6-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
+        sudo tailscale up --authkey="${{ secrets.TAILSCALE_AUTHKEY }}" --hostname="session6-run-${{ github.run_id }}" --ephemeral=true --accept-dns=false
         
         echo "در حال تثبیت شبکه Tailscale..."
         sleep 10
