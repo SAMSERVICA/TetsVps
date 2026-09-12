@@ -100,7 +100,7 @@ jobs:
 
   session-2:
     needs: session-1
-    if: !cancelled()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -202,7 +202,7 @@ jobs:
 
   session-3:
     needs: session-2
-    if: !cancelled()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -304,7 +304,7 @@ jobs:
 
   session-4:
     needs: session-3
-    if: !cancelled()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -406,7 +406,7 @@ jobs:
 
   session-5:
     needs: session-4
-    if: !cancelled()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -508,7 +508,7 @@ jobs:
 
   session-6:
     needs: session-5
-    if: !cancelled()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
