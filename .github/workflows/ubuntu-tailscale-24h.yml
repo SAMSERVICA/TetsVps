@@ -32,7 +32,7 @@ jobs:
         sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config || true
         sudo systemctl restart ssh || sudo service ssh restart || true
         
-        # Create stop-all command with sleep delay for proper cancel request transmission
+        # Create stop-all command with delay for proper cancellation
         sudo bash -c "cat << 'EOF' > /usr/local/bin/stop-all
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
@@ -66,12 +66,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5.5 Hours)
       run: |
         TOTAL_SECONDS=19800
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 1 and saving backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
@@ -169,12 +175,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5.5 Hours)
       run: |
         TOTAL_SECONDS=19800
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 2 and saving backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
@@ -272,12 +284,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5.5 Hours)
       run: |
         TOTAL_SECONDS=19800
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 3 and saving backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
@@ -375,12 +393,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5.5 Hours)
       run: |
         TOTAL_SECONDS=19800
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 4 and saving backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
@@ -478,12 +502,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5.5 Hours)
       run: |
         TOTAL_SECONDS=19800
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 5 and saving backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
@@ -581,12 +611,18 @@ jobs:
         echo "Password: neo_tenet"
         echo "SSH Command: ssh -o StrictHostKeyChecking=no Neotenet@$TS_IP"
         echo "To stop ALL sessions type: stop-all"
+        echo "To skip to NEXT session type: touch /tmp/skip_timer"
         echo "=========================================="
 
     - name: Keep Alive & Live Timer (5 Hours 50 Mins)
       run: |
         TOTAL_SECONDS=21000
         while [ $TOTAL_SECONDS -gt 0 ]; do
+          if [ -f /tmp/skip_timer ]; then
+            echo -e "\nSkip signal received! Ending Session 6 and saving final backup..."
+            sudo rm -f /tmp/skip_timer
+            break
+          fi
           HOURS=$((TOTAL_SECONDS / 3600))
           MINS=$(((TOTAL_SECONDS % 3600) / 60))
           SECS=$((TOTAL_SECONDS % 60))
