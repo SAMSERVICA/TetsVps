@@ -32,11 +32,12 @@ jobs:
         sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config || true
         sudo systemctl restart ssh || sudo service ssh restart || true
         
-        # Create stop-all command
+        # Create stop-all command with sleep delay for proper cancel request transmission
         sudo bash -c "cat << 'EOF' > /usr/local/bin/stop-all
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -56,7 +57,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session1" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session1"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
@@ -128,6 +129,7 @@ jobs:
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -158,7 +160,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session2" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session2"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
@@ -230,6 +232,7 @@ jobs:
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -260,7 +263,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session3" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session3"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
@@ -332,6 +335,7 @@ jobs:
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -362,7 +366,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session4" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session4"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
@@ -434,6 +438,7 @@ jobs:
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -464,7 +469,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session5" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session5"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
@@ -536,6 +541,7 @@ jobs:
         #!/bin/bash
         echo 'Canceling all sessions and stopping workflow...'
         curl -s -X POST -H 'Authorization: token $GH_TOKEN' -H 'Accept: application/vnd.github.v3+json' 'https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/cancel'
+        sleep 4
         sudo pkill -9 -f sleep || true
         EOF"
         sudo chmod +x /usr/local/bin/stop-all
@@ -566,7 +572,7 @@ jobs:
         TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session6" --ephemeral
+        sudo tailscale up --authkey="$TAILSCALE_AUTHKEY" --hostname="github-ubuntu-session6"
         TS_IP=$(tailscale ip -4)
         echo "=========================================="
         echo "SSH Connection Details:"
